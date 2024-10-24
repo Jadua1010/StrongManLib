@@ -1,0 +1,310 @@
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and export to LaTeX again.
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epstopdf}
+\usepackage[table]{xcolor}
+\usepackage{matlab}
+\usepackage[paperheight=845pt,paperwidth=597pt,top=72pt,bottom=72pt,right=72pt,left=72pt,heightrounded]{geometry}
+
+\sloppy
+\epstopdfsetup{outdir=./}
+\graphicspath{ {./PressureSensor_media/} }
+
+\begin{document}
+
+\begin{matlabcode}
+clear all;
+AD2close()
+\end{matlabcode}
+\begin{matlaboutput}
+library/device seems already closed.
+\end{matlaboutput}
+\begin{matlabcode}
+hdwf = AD2Init();
+\end{matlabcode}
+\begin{matlaboutput}
+Set variable hfile: C:\Program Files (x86)\Digilent\WaveFormsSDK\inc\dwf.h
+Warning: Message from C preprocessor:
+C:\Program Files (x86)\Digilent\WaveFormsSDK\inc\dwf.h:29:9: warning: #pragma once in main file
+ #pragma once
+         ^~~~
+
+Warning: The function 'FDwfParamSet' was not found in the library
+Warning: The function 'FDwfParamGet' was not found in the library
+Warning: The function 'FDwfEnumStart' was not found in the library
+Warning: The function 'FDwfEnumStop' was not found in the library
+Warning: The function 'FDwfEnumInfo' was not found in the library
+Warning: The function 'FDwfDeviceOpenEx' was not found in the library
+Warning: The function 'FDwfDeviceParamSet' was not found in the library
+Warning: The function 'FDwfDeviceParamGet' was not found in the library
+Warning: The function 'FDwfAnalogInStatusDataMix16' was not found in the library
+Warning: The function 'FDwfAnalogInCounterInfo' was not found in the library
+Warning: The function 'FDwfAnalogInCounterSet' was not found in the library
+Warning: The function 'FDwfAnalogInCounterGet' was not found in the library
+Warning: The function 'FDwfAnalogInCounterStatus' was not found in the library
+Warning: The function 'FDwfAnalogInBuffersInfo' was not found in the library
+Warning: The function 'FDwfAnalogInBuffersSet' was not found in the library
+Warning: The function 'FDwfAnalogInBuffersGet' was not found in the library
+Warning: The function 'FDwfAnalogInBuffersStatus' was not found in the library
+Warning: The function 'FDwfAnalogInChannelCounts' was not found in the library
+Warning: The function 'FDwfAnalogInChannelBandwidthSet' was not found in the library
+Warning: The function 'FDwfAnalogInChannelBandwidthGet' was not found in the library
+Warning: The function 'FDwfAnalogInChannelImpedanceSet' was not found in the library
+Warning: The function 'FDwfAnalogInChannelImpedanceGet' was not found in the library
+Warning: The function 'FDwfAnalogInChannelFiirInfo' was not found in the library
+Warning: The function 'FDwfAnalogInChannelFiirSet' was not found in the library
+Warning: The function 'FDwfAnalogInChannelWindowSet' was not found in the library
+Warning: The function 'FDwfAnalogInChannelCustomWindowSet' was not found in the library
+Warning: The function 'FDwfAnalogOutNodePlayInfo' was not found in the library
+Warning: The function 'FDwfDigitalIOPullInfo' was not found in the library
+Warning: The function 'FDwfDigitalIOPullSet' was not found in the library
+Warning: The function 'FDwfDigitalIOPullGet' was not found in the library
+Warning: The function 'FDwfDigitalIODriveInfo' was not found in the library
+Warning: The function 'FDwfDigitalIODriveSet' was not found in the library
+Warning: The function 'FDwfDigitalIODriveGet' was not found in the library
+Warning: The function 'FDwfDigitalInStatusData3' was not found in the library
+Warning: The function 'FDwfDigitalInStatusNoise3' was not found in the library
+Warning: The function 'FDwfDigitalInStatusCompress' was not found in the library
+Warning: The function 'FDwfDigitalInStatusCompressed' was not found in the library
+Warning: The function 'FDwfDigitalInStatusCompressed2' was not found in the library
+Warning: The function 'FDwfDigitalInStatusTime' was not found in the library
+Warning: The function 'FDwfDigitalInCounterInfo' was not found in the library
+Warning: The function 'FDwfDigitalInCounterSet' was not found in the library
+Warning: The function 'FDwfDigitalInCounterGet' was not found in the library
+Warning: The function 'FDwfDigitalInCounterStatus' was not found in the library
+Warning: The function 'FDwfDigitalInBuffersInfo' was not found in the library
+Warning: The function 'FDwfDigitalInBuffersSet' was not found in the library
+Warning: The function 'FDwfDigitalInBuffersGet' was not found in the library
+Warning: The function 'FDwfDigitalInBuffersStatus' was not found in the library
+Warning: The function 'FDwfDigitalInTriggerInfo64' was not found in the library
+Warning: The function 'FDwfDigitalInTriggerSet64' was not found in the library
+Warning: The function 'FDwfDigitalInTriggerGet64' was not found in the library
+Warning: The function 'FDwfDigitalInTriggerResetSet64' was not found in the library
+Warning: The function 'FDwfDigitalOutStatusOutput' was not found in the library
+Warning: The function 'FDwfDigitalOutRepetitionSet' was not found in the library
+Warning: The function 'FDwfDigitalOutRepetitionGet' was not found in the library
+Warning: The function 'FDwfDigitalOutPlayDataSet' was not found in the library
+Warning: The function 'FDwfDigitalOutPlayUpdateSet' was not found in the library
+Warning: The function 'FDwfDigitalOutPlayRateSet' was not found in the library
+Warning: The function 'FDwfDigitalUartPolaritySet' was not found in the library
+Warning: The function 'FDwfDigitalSpiIdleSet' was not found in the library
+Warning: The function 'FDwfDigitalSpiDelaySet' was not found in the library
+Warning: The function 'FDwfDigitalSpiSelectSet' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdWriteRead' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdWriteRead16' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdWriteRead32' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdRead' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdReadOne' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdRead16' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdRead32' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdWrite' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdWriteOne' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdWrite16' was not found in the library
+Warning: The function 'FDwfDigitalSpiCmdWrite32' was not found in the library
+Warning: The function 'FDwfDigitalI2cStretchSet' was not found in the library
+Warning: The function 'FDwfDigitalI2cTimeoutSet' was not found in the library
+Warning: The function 'FDwfDigitalI2cSpyStart' was not found in the library
+Warning: The function 'FDwfDigitalI2cSpyStatus' was not found in the library
+Warning: The function 'FDwfDigitalCanPolaritySet' was not found in the library
+Warning: The function 'FDwfDigitalSwdReset' was not found in the library
+Warning: The function 'FDwfDigitalSwdRateSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdCkSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdIoSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdTurnSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdTrailSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdParkSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdNakSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdIoIdleSet' was not found in the library
+Warning: The function 'FDwfDigitalSwdClear' was not found in the library
+Warning: The function 'FDwfDigitalSwdWrite' was not found in the library
+Warning: The function 'FDwfDigitalSwdRead' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceReset' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceModeSet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceModeGet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceFrequencySet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceFrequencyGet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceAmplitudeSet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceAmplitudeGet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceOffsetSet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceOffsetGet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceProbeSet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceProbeGet' was not found in the library
+Warning: The function 'FDwfAnalogImpedancePeriodSet' was not found in the library
+Warning: The function 'FDwfAnalogImpedancePeriodGet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceCompReset' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceCompSet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceCompGet' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceConfigure' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceStatus' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceStatusInput' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceStatusWarning' was not found in the library
+Warning: The function 'FDwfAnalogImpedanceStatusMeasure' was not found in the library
+Warning: The function 'FDwfSpectrumWindow' was not found in the library
+Warning: The function 'FDwfSpectrumFFT' was not found in the library
+Warning: The function 'FDwfSpectrumTransform' was not found in the library
+Warning: The function 'FDwfSpectrumGoertzel' was not found in the library
+Check if dwf library is loaded: islibloaded = 1nVersion: 3.7.20                          
+FDwfDeviceOpen returned: 1
+\end{matlaboutput}
+\begin{matlabcode}
+
+% Set initial parameters
+\end{matlabcode}
+\begin{matlaboutput}
+sampleTime = 4
+\end{matlaboutput}
+\begin{matlabcode}
+frequency = 1e3
+\end{matlabcode}
+\begin{matlaboutput}
+frequency = 1000
+\end{matlaboutput}
+\begin{matlabcode}
+nSamples = 8000
+\end{matlabcode}
+\begin{matlaboutput}
+nSamples = 8000
+\end{matlaboutput}
+\begin{matlabcode}
+channel = 0
+\end{matlabcode}
+\begin{matlaboutput}
+channel = 0
+\end{matlaboutput}
+\begin{matlabcode}
+PressureFactor = 7.60
+\end{matlabcode}
+\begin{matlaboutput}
+PressureFactor = 7.6000
+\end{matlaboutput}
+\begin{matlabcode}
+
+% Set status LED
+AD2initAnalogOut(hdwf, 1, 0, 5, 0, 7);
+AD2StartAnalogOut(hdwf, 1);
+
+% Apply 5v over channels
+AD2initAnalogOut(hdwf, 0, 0, 5, 0, 7);
+AD2StartAnalogOut(hdwf, 0);
+
+% Wait one second for pressure sensor readings to stabilise
+pause(1)
+
+% Take 5 readings of pressure meter (at 0psi) to calculation offset
+AD2initAnalogIn(hdwf, channel, frequency, 5, 1000);
+AD2StartAnalogIn(hdwf);
+
+% Find mean of the 5 data points array and set as the offset
+OffsetVoltage = mean(AD2GetAnalogData(hdwf, channel, 1))
+\end{matlabcode}
+\begin{matlaboutput}
+OffsetVoltage = 2.4701
+\end{matlaboutput}
+\begin{matlabcode}
+pause(1)
+
+% Now turn off status LED
+AD2initAnalogOut(hdwf, 1, 0, 0, 0, 7);
+AD2StartAnalogOut(hdwf, 1);
+AD2initAnalogOut(hdwf, 0, 1, 5, 0, 7);
+AD2StartAnalogOut(hdwf, 0);
+
+% Pause between measurement of offset and general measurements
+pause(2)
+
+% Set 5 volts along the voltage rails
+AD2initAnalogOut(hdwf, 0, 0, 5, 0, 7);
+
+% Start measurement
+AD2initAnalogIn(hdwf, channel, frequency, 5, nSamples);
+AD2StartAnalogIn(hdwf);
+
+% Get the data from the AD2 for the input
+data = AD2GetAnalogData(hdwf, channel, nSamples);
+
+% Apply the offset, pressure factor and convert it to kPa (by multiplying
+% by 6.895)
+procdata = -(((data - OffsetVoltage) * PressureFactor) *  6.895)
+\end{matlabcode}
+\begin{matlaboutput}
+procdata = 1x8000    
+   -0.6281   -0.6804   -0.7153   -0.7327   -0.7676   -0.7502   -0.7327   -0.7327   -0.7153   -0.7327   -0.7153   -0.7502   -0.7502   -0.7502   -0.7676   -0.8549   -1.0642   -0.8898   -0.8723   -0.9944   -1.0468   -1.2736   -1.3434   -0.8723   -0.8374   -0.8200   -0.8025   -0.7851   -0.7676   -0.7676   -0.7676   -0.8898   -0.7676   -0.9247   -0.9072   -0.9595   -0.9770   -0.9944   -0.9072   -1.0119   -0.9072   -0.9072   -0.8898   -0.8723   -1.1340   -0.8723   -0.8200   -0.8374   -0.8200   -0.8374
+
+\end{matlaboutput}
+\begin{matlabcode}
+
+% Plot the data into the graph
+plot(procdata);
+xlabel('Time (ms)')
+ylabel('Pressure (psi)')
+\end{matlabcode}
+\begin{center}
+\includegraphics[width=\maxwidth{56.196688409433015em}]{figure_0.png}
+\end{center}
+\begin{matlabcode}
+
+% Display some further statistics of the data measured
+disp 'The mean pressure (kPa) measured is'
+\end{matlabcode}
+\begin{matlaboutput}
+The mean pressure (kPa) measured is
+\end{matlaboutput}
+\begin{matlabcode}
+mean(procdata)
+\end{matlabcode}
+\begin{matlaboutput}
+ans = -0.7442
+\end{matlaboutput}
+\begin{matlabcode}
+
+disp 'The maximum pressure (kPa) measured is'
+\end{matlabcode}
+\begin{matlaboutput}
+The maximum pressure (kPa) measured is
+\end{matlaboutput}
+\begin{matlabcode}
+max(procdata)
+\end{matlabcode}
+\begin{matlaboutput}
+ans = 2.4774
+\end{matlaboutput}
+\begin{matlabcode}
+
+disp 'The minimum pressure (kPa) measured is'
+\end{matlabcode}
+\begin{matlaboutput}
+The minimum pressure (kPa) measured is
+\end{matlaboutput}
+\begin{matlabcode}
+min(procdata)
+\end{matlabcode}
+\begin{matlaboutput}
+ans = -2.3378
+\end{matlaboutput}
+\begin{matlabcode}
+
+% Reset the status LEDs
+AD2initAnalogOut(hdwf, 0, 0, 0, 0, 7);
+AD2initAnalogOut(hdwf, 1, 0.5, 5, 0, 4);
+AD2StartAnalogOut(hdwf, 1);
+
+AD2close();
+\end{matlabcode}
+\begin{matlaboutput}
+Device closed!
+\end{matlaboutput}
+\begin{matlabcode}
+
+\end{matlabcode}
+
+\end{document}
