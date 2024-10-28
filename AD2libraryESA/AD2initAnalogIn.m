@@ -1,4 +1,4 @@
-function AD2initAnalogIn(hdwf, channel, sampleFreq, range, bufferSize,acqMode)
+function AD2initAnalogIn(hdwf, channel, sampleFreq, range, bufferSize, acqMode)
 % AD2initAnalogIn - function to initialize analog input.
 %
 % AD2initAnalogIn(hdwf, channel, sampleFreq, range, bufferSize)

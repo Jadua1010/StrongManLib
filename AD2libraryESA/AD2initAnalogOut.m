@@ -40,5 +40,4 @@ calllib('dwf','FDwfAnalogOutOffsetSet',hdwf, channel, offSet); %define offset vo
 calllib('dwf','FDwfAnalogOutFrequencySet',hdwf, channel, freq); %define output frequency
 calllib('dwf','FDwfAnalogOutAmplitudeSet',hdwf, channel, ampl); %define output amplitude
 
-
 return
