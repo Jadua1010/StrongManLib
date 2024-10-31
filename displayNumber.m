@@ -39,7 +39,7 @@ function displayNumber(calculation)
     
     numColumn=size(matrixData,2);
     
-    disp(matrixData);
+    %disp(matrixData);
     
     dataSend = uint8(ones(numLEDs,numColumn)*250);                              %Create an empty array of display data to send to ESP32
     dataSend(1,:) = 1;

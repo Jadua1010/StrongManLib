@@ -10,9 +10,11 @@ ledOut = 1;
 
 AD2initAnalogOut(hdwf, ledOut, 0.5, -1, -2.3, 1);  % LED wave
 AD2StartAnalogOut(hdwf, ledOut)
-AD2SetPower(hdwf, buttonOut, 3.3);
+AD2SetPower(hdwf, buttonOut, 5);
 pressed = 0;
 initializeESP();
+
+global calibration
 
 while true
     while pressed == 0
@@ -20,13 +22,18 @@ while true
         pressed = pressedVector(buttonIn + 1);
     end
     AD2initAnalogOut(hdwf, ledOut, 4, -1, -2.3, 2);  % LED wave
-    AD2StartAnalogOut(hdwf, ledOut)
-    a = parfevalOnAll(@MotorCodeFunc, 0, hdwf);
-    pause(0.2)
-    % maxDistance = MeasurePeakDistance(hdwf, 50);
-    % maxDistance
-    displayNumber(7);
-    parfevalOnAll(@calibrateDisplay, 0);
+    AD2StartAnalogOut(hdwf, ledOut);
+    % Calibrate
+    AD2StartAnalogIn(hdwf);
+    calData = AD2GetAnalogData(hdwf, 0, 2000);
+    calibration = average(calData) - 0.05
+    % a = parfevalOnAll(@MotorCodeFunc, 0, hdwf);
+    [maxDistance, predDistance] = MeasureAllDistances(hdwf, 50);
+    maxDistance
+    predDistance
+    % parfevalOnAll(@LED, 0, 120);
+    % displayNumber(round(maxDistance)*100);
+    % parfevalOnAll(@calibrateDisplay, 0);
     % pause(5)
     AD2initAnalogOut(hdwf, ledOut, 0.5, -1, -2.3, 1);  % LED wave
     AD2StartAnalogOut(hdwf, ledOut);

@@ -34,7 +34,7 @@ AD2initAnalogIn(hdwf, channelIn, sampleRate, 10, nSamples);
 % Calibrate
 AD2StartAnalogIn(hdwf);
 calData = AD2GetAnalogData(hdwf, channelIn, nSamples);
-calibration = mean(calData) - 0.08;
+calibration = mean(calData) - 0.05;
 
 % Variables to store data for plotting
 updateCount = 0; % Counter to track updates
@@ -81,17 +81,17 @@ while true
     
             % Calculate the time difference between first peak and minimum peak
             timeDifference = (minPeakTime - firstPeakTime);
-            distance = ((timeDifference * 331.29 * 0.5 - 0.90) * 2)^0.9;
+            distance = 1.5 - ((timeDifference * 331.29 * 0.5 - 0.90) * 2).^0.9;
             fprintf('Distance: %f m\n', distance);
             distanceData = [distanceData, distance];
            
             
             % Update plot every 10 measurements
             updateCount = updateCount + 1;
-            if mod(updateCount, 5) == 0
+            if mod(updateCount, 3) == 0
                 % Calculate the mean of the last 10 distances (or fewer if not enough data points)
-                if length(distanceData) >= 5
-                    meanLast10 = [meanLast10, mean(distanceData(end-4:end))];
+                if length(distanceData) >= 3
+                    meanLast10 = [meanLast10, mean(distanceData(end-2:end))];
                 end
                 set(hPlot, 'XData', 1:length(meanLast10), 'YData', meanLast10);
                 drawnow;  % Force MATLAB to update the figure window
