@@ -25,8 +25,8 @@ while true
     pause(0.2)
     % maxDistance = MeasurePeakDistance(hdwf, 50);
     % maxDistance
-    displayNumber(69);
-    calibrateDisplay();
+    displayNumber(7);
+    parfevalOnAll(@calibrateDisplay, 0);
     % pause(5)
     AD2initAnalogOut(hdwf, ledOut, 0.5, -1, -2.3, 1);  % LED wave
     AD2StartAnalogOut(hdwf, ledOut);
