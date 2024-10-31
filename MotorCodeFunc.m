@@ -12,8 +12,8 @@ function MotorCodeFunc(hdwf)
     channelOut = 0; % Channel that outputs the PWM wave
     
     % Determing thew duty cycle in percentages
-    duty_cycle = acceleration_voltage / max_volage * 100;
-    
+    %duty_cycle = acceleration_voltage / max_volage * 100;
+    duty_cycle = 52.5;
     
     % Generate the PWM signal based on the duty cycle
     AD2initPWM(hdwf,channelOut,duty_cycle,frequency);

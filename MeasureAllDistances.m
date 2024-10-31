@@ -7,7 +7,7 @@ function [maxDist, predicted] = MeasureAllDistances(hdwf, reps)
     solenoid_pin_close = bin2dec('0000');
     solenoid_pin_open = bin2dec('0010'); 
     [Voltage, t] = StrongmanGameHammer(); %Random voltage from the function simulating the hammer
-    acceleration_voltage = max(Voltage); %The voltage that is used
+    acceleration_voltage = 5 * max(Voltage); %The voltage that is used
     %acceleration_voltage  = ; %Enter the value manually, if the test is wanted 
     disp(acceleration_voltage)
     max_voltage = 12;            % Voltage level for PWM (12V)
@@ -16,7 +16,8 @@ function [maxDist, predicted] = MeasureAllDistances(hdwf, reps)
     
     % Determing thew duty cycle in percentages
     duty_cycle = acceleration_voltage / max_voltage * 100;
-   
+    %duty_cycle = 52.5;
+
     % Generate the PWM signal based on the duty cycle
     AD2initPWM(hdwf,channelOut,duty_cycle,frequency);
     
