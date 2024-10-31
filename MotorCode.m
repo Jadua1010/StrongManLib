@@ -17,12 +17,8 @@ period = 0.01;         % The total period of PWM signal (s)
 frequency = 100;       % 1/period
 channelOut = 0; % Channel that outputs the PWM wave
 
-% Generate 3.3V DC
-AD2SetPower(hdwf,0,max_voltage);
-
-
 % Determing thew duty cycle in percentages
-duty_cycle = acceleration_voltage / max_voltage * 100;
+duty_cycle = ;
 
 % Generate the PWM signal based on the duty cycle
 AD2initPWM(hdwf,channelOut,duty_cycle,frequency);

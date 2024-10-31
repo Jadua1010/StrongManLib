@@ -15,6 +15,7 @@ sampleRate = 2e6;           % Sample rate for input (1 MHz)
 pulses = 5;                 % Amount of pulses to send
 sampleInterval = 1 / sampleRate;
 distanceData = [];
+meanLast10 = [];
 
 % Set up the figure and plot
 figure;
@@ -29,7 +30,15 @@ debounce = 0.01;
 % Initialize Output and Input
 AD2initAnalogOut(hdwf, channelOutW1, outputFreq, amplitude, offset, 1);  % Sine wave on W1
 AD2initAnalogIn(hdwf, channelIn, sampleRate, 10, nSamples);
+
+% Calibrate
+AD2StartAnalogIn(hdwf);
+calData = AD2GetAnalogData(hdwf, channelIn, nSamples);
+calibration = mean(calData) - 0.08;
+
 % Variables to store data for plotting
+updateCount = 0; % Counter to track updates
+
 while true
     allData = [];
     allData2 = [];
@@ -49,7 +58,7 @@ while true
             fprintf('Restarting due to error\n');
             break;
     
-        elseif any(data <= -3)
+        elseif any(data <= calibration - 3)
             detected3V = true;
             allData = [allData, data];  % Append data for plotting
     
@@ -63,32 +72,32 @@ while true
             end
     
             % Find the index of the first voltage sample smaller than -0.150 V
-            firstLowVoltageIndex = find(allData2 < -0.02, 1, 'first');
+            firstLowVoltageIndex = find(allData2 < calibration - 0.02, 1, 'first');
             minPeakTime = (length(allData2) + firstLowVoltageIndex - 1) * sampleInterval;
     
              % Find the sample index of the first -3V detection
-            firstIndex3V = find(data <= -3, 1, 'first');
+            firstIndex3V = find(data <= calibration - 3, 1, 'first');
             firstPeakTime = (length(allData) - nSamples + firstIndex3V - 1) * sampleInterval;
-            % fprintf('First -3V signal detected at %f seconds\n', firstPeakTime);
-    
-            % Combine all data for plotting
-            % allData = [allData, allData2];
     
             % Calculate the time difference between first peak and minimum peak
             timeDifference = (minPeakTime - firstPeakTime);
-            distance = timeDifference * 331.29 * 0.5;
+            distance = ((timeDifference * 331.29 * 0.5 - 0.90) * 2)^0.9;
             fprintf('Distance: %f m\n', distance);
             distanceData = [distanceData, distance];
-            set(hPlot, 'XData', 1:length(distanceData), 'YData', distanceData);
-            drawnow;  % Force MATLAB to update the figure window
+           
+            
+            % Update plot every 10 measurements
+            updateCount = updateCount + 1;
+            if mod(updateCount, 5) == 0
+                % Calculate the mean of the last 10 distances (or fewer if not enough data points)
+                if length(distanceData) >= 5
+                    meanLast10 = [meanLast10, mean(distanceData(end-4:end))];
+                end
+                set(hPlot, 'XData', 1:length(meanLast10), 'YData', meanLast10);
+                drawnow;  % Force MATLAB to update the figure window
+            end
+            
             pause(debounce);
         end
     end
 end
-% Plotting all data using sample indices
-figure;
-plot(1:length(allData), allData);
-xlabel('Sample Number');
-ylabel('Voltage (V)');
-title('Voltage vs. Sample Number');
-grid on;
