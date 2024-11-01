@@ -5,7 +5,7 @@ global numLEDs sendPort recievePort pausEE espIP udps udpr;
 %Select accel z-axis
 dispCommand = uint8(zeros(numLEDs,1));
 dispCommand(1)=4;
-dispCommand(2)=3;
+dispCommand(2)=1;
 udps(dispCommand);
 
 %Request data
@@ -33,8 +33,8 @@ for i = 1:packets                                                           %Ste
 end
 
 
-[~,timeDif] = findpeaks(dataRead,MinPeakDistance=40,MinPeakHeight=500);
-interval = mean(diff(timeDif))/0.24;
+[~,timeDif] = findpeaks(dataRead,MinPeakDistance=20,MinPeakHeight=500);
+interval = mean(diff(timeDif))/0.12;
 disp(interval);
 
 dispCommand = uint8(zeros(numLEDs,1));                                      %Create an empty display packet to contain command
